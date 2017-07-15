@@ -7,9 +7,20 @@
     <link rel="stylesheet" href="css/base.css" />
     <link rel="stylesheet" href="css/fractures.css" />
     <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" class="next-head">
+    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
     <script src="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>
     <script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
     <script src="js/leaflet-gps.js"></script>
+    <style>
+      @font-face {
+        font-family: 'Glyphicons Halflings';
+        src:url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.eot');
+        src:url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+          url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.woff') format('woff'),
+          url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+          url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+      }
+    </style>
   </head>
   <body>
     <div class="fractures-header fixed z-2 top-0 w-100 mb-1" style="background: white;    box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);">
@@ -39,7 +50,16 @@
 
       <div style="width:100%; height:600px" id="map" class=""></div>
     </div>
-
+    <div class="stars stars-example-fontawesome flex-center center mt-5">
+      <div class="br-wrapper br-theme-fontawesome-stars"><select id="example-fontawesome" name="rating" autocomplete="off" style="display: none;">
+        <option value="1">1</option>
+        <option value="2">2</option>
+        <option value="3">3</option>
+        <option value="4">4</option>
+        <option value="5">5</option>
+      </select><div class="br-widget"><a href="#" data-rating-value="1" data-rating-text="1" class="br-selected br-current"></a><a href="#" data-rating-value="2" data-rating-text="2" class=""></a><a href="#" data-rating-value="3" data-rating-text="3" class=""></a><a href="#" data-rating-value="4" data-rating-text="4" class=""></a><a href="#" data-rating-value="5" data-rating-text="5"></a></div></div>
+      <span class="title">Rate your experience</span>
+    </div>
     <script>
       // This example adds a search box to a map, using the Google Place Autocomplete
       // feature. People can enter geographical searches. The search box will return a
@@ -121,6 +141,16 @@
     <script
      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMb-fBhgV_g_v1UCbjOh4BKnmDkwQJ4Co&libraries=places&callback=initAutocomplete"
      async defer>
+    </script>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+    <script src="jquery.barrating.min.js"></script>
+    <script type="text/javascript">
+       $(function() {
+          $('#example').barrating({
+            theme: 'fontawesome-stars'
+          });
+       });
     </script>
   </body>
 </html>
