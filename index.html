@@ -1,156 +1,167 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>SafetyCan.com</title>
-    <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.css" />
-    <link rel="stylesheet" href="css/leaflet-gps.css" />
-    <link rel="stylesheet" href="css/base.css" />
-    <link rel="stylesheet" href="css/fractures.css" />
-    <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" class="next-head">
-    <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
-    <script src="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>
-    <script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
-    <script src="js/leaflet-gps.js"></script>
-    <style>
-      @font-face {
-        font-family: 'Glyphicons Halflings';
-        src:url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.eot');
-        src:url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
-          url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.woff') format('woff'),
-          url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
-          url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
-      }
-    </style>
-  </head>
-  <body>
-    <div class="fractures-header fixed z-2 top-0 w-100 mb-1" style="background: white;    box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);">
-      <div class="fr-container"style="max-width: 1080px;margin: 0 auto;">
-        <div class="left float-left logo">
-          <h6>Safety<b>Can</b></h6>
-          <small class="silver bold">Public toilet reviews</small>
-        </div>
-        <div class="right float-right">
-          <ul class=" flex flex-gap-2">
-            <li class="active">
-              <a href="/">Home</a>
-            </li>
-            <li class="false">
-              <a href="#">Why</a>
-            </li>
-            <li class="false">
-              <a href="#">About</a>
-            </li>
-          </ul>
-        </div>
-      </div>
-  </div>
-    <!-- <div class="" style="background-color: #333; opacity: 0.7;width: 100%;z-index: 5;height: 600px;position:absolute;"></div> -->
-    <input id="pac-input" class="controls map-search" type="text" placeholder="Search for your toilet">
-    <div class="flex-center flex map-box mt-6">
 
-      <div style="width:100%; height:600px" id="map" class=""></div>
+<head>
+  <title>SafetyCan.com</title>
+  <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.css" />
+  <link rel="stylesheet" href="css/leaflet-gps.css" />
+  <link rel="stylesheet" href="css/base.css" />
+  <link rel="stylesheet" href="css/fractures.css" />
+  <link href="https://fonts.googleapis.com/css?family=Source+Code+Pro:400,700" rel="stylesheet" class="next-head">
+  <link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css">
+  <script src="http://cdn.leafletjs.com/leaflet-0.3.1/leaflet.js"></script>
+  <script src="http://matchingnotes.com/javascripts/leaflet-google.js"></script>
+  <script src="js/leaflet-gps.js"></script>
+  <script src="js/examples.js"></script>
+  <style>
+    @font-face {
+      font-family: 'Glyphicons Halflings';
+      src: url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.eot');
+      src: url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.eot?#iefix') format('embedded-opentype'),
+      url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.woff') format('woff'),
+      url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.ttf') format('truetype'),
+      url('https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/3.3.5/fonts/glyphicons-halflings-regular.svg#glyphicons-halflingsregular') format('svg');
+    }
+  </style>
+</head>
+
+<body>
+  <div class="fractures-header fixed z-2 top-0 w-100 mb-1" style="background: white;    box-shadow: 0 4px 6px rgba(50,50,93,.11), 0 1px 3px rgba(0,0,0,.08);">
+    <div class="fr-container" style="max-width: 1080px;margin: 0 auto;">
+      <div class="left float-left logo">
+        <h6>Safety<b>Can</b></h6>
+        <small class="silver bold">Public toilet reviews</small>
+      </div>
+      <div class="right float-right">
+        <ul class=" flex flex-gap-2">
+          <li class="active">
+            <a href="/">Home</a>
+          </li>
+          <li class="false">
+            <a href="#">Why</a>
+          </li>
+          <li class="false">
+            <a href="#">About</a>
+          </li>
+        </ul>
+      </div>
     </div>
-    <div class="stars stars-example-fontawesome flex-center center mt-5">
-      <div class="br-wrapper br-theme-fontawesome-stars"><select id="example-fontawesome" name="rating" autocomplete="off" style="display: none;">
+  </div>
+  <!-- <div class="" style="background-color: #333; opacity: 0.7;width: 100%;z-index: 5;height: 600px;position:absolute;"></div> -->
+  <input id="pac-input" class="controls map-search" type="text" placeholder="Search for your toilet">
+  <div class="flex-center flex map-box mt-6">
+
+    <div style="width:100%; height:600px" id="map" class=""></div>
+  </div>
+
+  <!-- rating stars -->
+  <div class="stars stars-example-fontawesome flex-center center mt-5">
+    <div class="br-wrapper br-theme-fontawesome-stars"><select id="example-fontawesome" name="rating" autocomplete="off" style="display: none;">
         <option value="1">1</option>
         <option value="2">2</option>
         <option value="3">3</option>
         <option value="4">4</option>
         <option value="5">5</option>
-      </select><div class="br-widget"><a href="#" data-rating-value="1" data-rating-text="1" class="br-selected br-current"></a><a href="#" data-rating-value="2" data-rating-text="2" class=""></a><a href="#" data-rating-value="3" data-rating-text="3" class=""></a><a href="#" data-rating-value="4" data-rating-text="4" class=""></a><a href="#" data-rating-value="5" data-rating-text="5"></a></div></div>
-      <span class="title">Rate your experience</span>
+      </select>
+      <div class="br-widget"><a href="#" data-rating-value="1" data-rating-text="1" class="br-selected br-current"></a><a href="#" data-rating-value="2" data-rating-text="2" class=""></a><a href="#" data-rating-value="3" data-rating-text="3" class=""></a><a href="#" data-rating-value="4"
+          data-rating-text="4" class=""></a><a href="#" data-rating-value="5" data-rating-text="5"></a></div>
     </div>
-    <script>
-      // This example adds a search box to a map, using the Google Place Autocomplete
-      // feature. People can enter geographical searches. The search box will return a
-      // pick list containing a mix of places and predicted search terms.
+    <span class="title">Rate your experience</span>
+  </div>
 
-      // This example requires the Places library. Include the libraries=places
-      // parameter when you first load the API. For example:
-      // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+  <script>
+    // This example adds a search box to a map, using the Google Place Autocomplete
+    // feature. People can enter geographical searches. The search box will return a
+    // pick list containing a mix of places and predicted search terms.
 
-      function initAutocomplete() {
-        var map = new google.maps.Map(document.getElementById('map'), {
-          center: {lat: -33.8688, lng: 151.2195},
-          zoom: 13,
-          mapTypeId: 'roadmap'
+    // This example requires the Places library. Include the libraries=places
+    // parameter when you first load the API. For example:
+    // <script src="https://maps.googleapis.com/maps/api/js?key=YOUR_API_KEY&libraries=places">
+
+    function initAutocomplete() {
+      var map = new google.maps.Map(document.getElementById('map'), {
+        center: {
+          lat: -33.8688,
+          lng: 151.2195
+        },
+        zoom: 13,
+        mapTypeId: 'roadmap'
+      });
+
+      // Create the search box and link it to the UI element.
+      var input = document.getElementById('pac-input');
+      var searchBox = new google.maps.places.SearchBox(input);
+      map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
+
+      // Bias the SearchBox results towards current map's viewport.
+      map.addListener('bounds_changed', function() {
+        searchBox.setBounds(map.getBounds());
+      });
+
+      var markers = [];
+      // Listen for the event fired when the user selects a prediction and retrieve
+      // more details for that place.
+      searchBox.addListener('places_changed', function() {
+        var places = searchBox.getPlaces();
+
+        if (places.length == 0) {
+          return;
+        }
+
+        // Clear out the old markers.
+        markers.forEach(function(marker) {
+          marker.setMap(null);
         });
+        markers = [];
 
-        // Create the search box and link it to the UI element.
-        var input = document.getElementById('pac-input');
-        var searchBox = new google.maps.places.SearchBox(input);
-        map.controls[google.maps.ControlPosition.TOP_LEFT].push(input);
-
-        // Bias the SearchBox results towards current map's viewport.
-        map.addListener('bounds_changed', function() {
-          searchBox.setBounds(map.getBounds());
-        });
-
-        var markers = [];
-        // Listen for the event fired when the user selects a prediction and retrieve
-        // more details for that place.
-        searchBox.addListener('places_changed', function() {
-          var places = searchBox.getPlaces();
-
-          if (places.length == 0) {
+        // For each place, get the icon, name and location.
+        var bounds = new google.maps.LatLngBounds();
+        places.forEach(function(place) {
+          if (!place.geometry) {
+            console.log("Returned place contains no geometry");
             return;
           }
+          var icon = {
+            url: place.icon,
+            size: new google.maps.Size(71, 71),
+            origin: new google.maps.Point(0, 0),
+            anchor: new google.maps.Point(17, 34),
+            scaledSize: new google.maps.Size(25, 25)
+          };
 
-          // Clear out the old markers.
-          markers.forEach(function(marker) {
-            marker.setMap(null);
-          });
-          markers = [];
+          // Create a marker for each place.
+          markers.push(new google.maps.Marker({
+            map: map,
+            icon: icon,
+            title: place.name,
+            position: place.geometry.location
+          }));
 
-          // For each place, get the icon, name and location.
-          var bounds = new google.maps.LatLngBounds();
-          places.forEach(function(place) {
-            if (!place.geometry) {
-              console.log("Returned place contains no geometry");
-              return;
-            }
-            var icon = {
-              url: place.icon,
-              size: new google.maps.Size(71, 71),
-              origin: new google.maps.Point(0, 0),
-              anchor: new google.maps.Point(17, 34),
-              scaledSize: new google.maps.Size(25, 25)
-            };
-
-            // Create a marker for each place.
-            markers.push(new google.maps.Marker({
-              map: map,
-              icon: icon,
-              title: place.name,
-              position: place.geometry.location
-            }));
-
-            if (place.geometry.viewport) {
-              // Only geocodes have viewport.
-              bounds.union(place.geometry.viewport);
-            } else {
-              bounds.extend(place.geometry.location);
-            }
-          });
-          map.fitBounds(bounds);
+          if (place.geometry.viewport) {
+            // Only geocodes have viewport.
+            bounds.union(place.geometry.viewport);
+          } else {
+            bounds.extend(place.geometry.location);
+          }
         });
-      }
+        map.fitBounds(bounds);
+      });
+    }
+  </script>
 
-    </script>
+  <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMb-fBhgV_g_v1UCbjOh4BKnmDkwQJ4Co&libraries=places&callback=initAutocomplete" async defer>
+  </script>
 
-    <script
-     src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAMb-fBhgV_g_v1UCbjOh4BKnmDkwQJ4Co&libraries=places&callback=initAutocomplete"
-     async defer>
-    </script>
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+  <script src="js/jquery.barrating.min.js"></script>
+  <script type="text/javascript">
+    $(function() {
+      $('#example').barrating({
+        theme: 'fontawesome-stars',
+        fastClicks: true
+      });
+    });
+  </script>
+</body>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
-    <script src="jquery.barrating.min.js"></script>
-    <script type="text/javascript">
-       $(function() {
-          $('#example').barrating({
-            theme: 'fontawesome-stars'
-          });
-       });
-    </script>
-  </body>
 </html>
